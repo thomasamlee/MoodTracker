@@ -4,13 +4,16 @@ import {useAppContext} from '../App.provider';
 import {MoodItemRow} from '../components/MoodItemRow';
 
 export const History: React.FC = () => {
-  const {moodList} = useAppContext();
+  const appContext = useAppContext();
 
   return (
     <ScrollView>
-      {moodList.map(item => (
-        <MoodItemRow item={item} key={item.timestamp} />
-      ))}
+      {appContext.moodList
+        .slice()
+        .reverse()
+        .map(item => (
+          <MoodItemRow item={item} key={item.timestamp} />
+        ))}
     </ScrollView>
   );
 };
